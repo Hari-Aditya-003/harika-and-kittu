@@ -1,0 +1,9 @@
+{$SITE_DOMAIN} {
+    encode zstd gzip
+    root * /srv/site
+    file_server
+    header X-Content-Type-Options nosniff
+    header Referrer-Policy strict-origin-when-cross-origin
+    @assets path /assets/* /fonts/* /images/*
+    header @assets Cache-Control "public, max-age=86400"
+}

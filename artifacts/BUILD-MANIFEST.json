@@ -1,0 +1,29 @@
+{
+  "archive": "artifacts/harika-dharmendra-invitation.zip",
+  "archive_sha256": "d6660c7f890b6400a95339d4b9dbfdae32fedd9988505093ba8ffb309a1145ae",
+  "files": {
+    "assets/index-CKPAEV0s.css": "9acc5926c277c88ce7c0d9876e460e8335da5f771f64706d1e3cbd5ddb3af97a",
+    "assets/index-D5K6IS07.js": "02dbfa99b2904a2d3bb980ada35664580b78103c4963eff1692192debc4e3d11",
+    "fonts/cormorant-garamond-italic.woff": "2660b05a298f77dd951afa2d98ce5daaf599d367f8a17d5a08c3d64131832664",
+    "fonts/cormorant-garamond-normal.woff": "5298378665ae5d060188b3d54804fc1ca46b955f91d662928552fb07c440853c",
+    "fonts/cormorantgaramond-OFL.txt": "6f5a41d57400577a50aae88475b11f292f3d7de78ee7d5113c69577331d8ad31",
+    "fonts/dm-sans-normal.woff": "7c78d87ef38bfddd174e7603f952ef607985eff83a6cae51293ba0e90e4b52bc",
+    "fonts/dmsans-OFL.txt": "7ec15e79c59bc14b86436a17e5eb7926b46cbcaeb08e1a7e6c110b415e6eb2a2",
+    "fonts/fonts.css": "c60c41eb8ac167d1dbc5b23dc1126d0c856e625d12b4fc3036ad3b696daaae9b",
+    "fonts/noto-serif-devanagari-normal.woff": "73b6069d035d776493b1903a192af67081f2b2526a451450745faae1b4a1610c",
+    "fonts/notoserifdevanagari-OFL.txt": "2fc8248c8a907cb845b1317c824b975109e4e4a89bc917810575c1fd1d11861f",
+    "images/favicon.svg": "d16d8f9a743cc92c9c7a947928d089558c28f035414cd8a4242f7d2d42fbda14",
+    "images/mandap-480.webp": "3ce98cf977c473aa189ac910d366f5b229da89031517d831a3109cfccafb5e20",
+    "images/mandap-800.webp": "9b3d106001eeea8e56dc0541cbaa339a528679c6ff52cae82021f9df929485d7",
+    "images/mandap.webp": "d7b2de412ef941ec563529bdfdedd7b10fd9c28b773385f598a1c51a7511811a",
+    "images/opening/musicians-sheet.webp": "f69f52ee0067198be07f09c4c544328a17f49650bfad242c92c0bd56dcde17ec",
+    "images/opening/procession-sheet.webp": "b29cfd9d4a3acc1bbcf2b9e17ec8fe078260077927a718ebb8d57fc40d266cf8",
+    "images/opening/temple-gold.webp": "5a9cfac5223a9494291161864c7871a538b4da18d5ee2c3735500d19b16c02ed",
+    "images/social-preview.jpg": "4e8021aefcdaeb65c86bcd0f51f17beb75624d7e7965ce60978339144788cfb5",
+    "index.html": "da3a0ef04d0179bc881ff37e9a61fb3380a1d90a43a9406a25e0b6ffa1869cbd",
+    "qr-code-maroon.png": "aa6a07527efdf2b72f0980e10335a93f1fa74f86f4378c0f684473ce89a8c7ed",
+    "qr-code-print.png": "48e339174acfa672e26329e9f1b97e6890e8e4813a5c9ed6112ce75254fb6598",
+    "qr-code.svg": "393b2f7e7457126932ecd5782d81c087f95e026ab1dac82067a888c1483c8a81",
+    "robots.txt": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95"
+  }
+}

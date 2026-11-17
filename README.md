@@ -1,50 +1,76 @@
-# Wedding Celebration of Harika & Kittu 💍
+# Harika & Dharmendra wedding invitation
 
-Official Wedding Invitation Website & Permanent QR Code Hub.
+A mobile wedding invitation with a Ganesh seal, illustrated procession, gold temple opening, sacred mandap, Indian-time countdown, and independent wedding and reception details.
 
-## 🌐 Live Permanent Website URL
-👉 **[https://hari-aditya-003.github.io/harika-and-kittu/](https://hari-aditya-003.github.io/harika-and-kittu/)**
+## Run
 
-This link is hosted directly on **GitHub Pages** with free, permanent SSL (HTTPS). 
+Use Node.js 22 or newer.
 
----
+```sh
+npm ci
+npm run dev
+```
 
-## 📱 Fixed Permanent QR Code for Wedding Invitation Cards
+Open the local URL printed by Vite. Source HTML runs through the development server.
 
-The QR code generated for this website points **directly and permanently** to:
-`https://hari-aditya-003.github.io/harika-and-kittu/`
+## Build the website ZIP
 
-### Why this QR code will NEVER change or expire:
-1. **Direct First-Party URL**: It does NOT use third-party redirect services (like Bitly, QR Tiger, or free trial QR generators) that expire after 14 days or stop working.
-2. **Permanent GitHub Pages Hosting**: The repository name `harika-and-kittu` and your username `Hari-Aditya-003` are fixed.
-3. **Safe for Physical Printing**: You can print this QR code onto physical wedding cards today. Any updates you make to the website (changing dates, adding photos, updating venue coordinates, guest list) will reflect immediately when guests scan the QR code!
+```sh
+npm test
+npm run package:site
+```
 
-### Available QR Assets:
-| File | Format | Best Used For |
-| :--- | :--- | :--- |
-| `qr-code.svg` | **Scalable Vector (SVG)** | Professional printing press, Adobe Illustrator, CorelDraw, Canva (infinitely scalable with zero quality loss) |
-| `qr-code-print.png` | **High-Res Monochrome PNG** | Direct card insertion, screen printing, offset printing |
-| `qr-code-maroon.png` | **Royal Maroon PNG** | Digital invitations, WhatsApp wedding cards |
-| `wedding-qr-invitation-card.png` | **Framed Card Badge** | Ready-to-share card graphic with gold border, couple names & instructions |
+Upload the contents of `artifacts/harika-dharmendra-invitation.zip` to a static web server. The ZIP contains `index.html`, scripts, images, fonts and QR images. `artifacts/BUILD-MANIFEST.json` records the packaged file hashes. The packaging command requires the `zip` utility, available on macOS and Ubuntu.
 
----
+## Edit the wedding details
 
-## ✨ Features Included on the Website
-- **Royal Wedding Design**: Traditional auspicious shloka (॥ श्री गणेशाय नमः ॥), royal burgundy & gold theme, and falling rose & gold petals animation.
-- **Live Countdown Timer**: Real-time days, hours, minutes, seconds countdown to the wedding day.
-- **Celebration Itinerary**: Detailed cards for Haldi, Sangeet & Mehendi, Lagna Muhurtham, and Reception with "Add to Calendar" (.ics) support.
-- **Venue & Google Maps**: One-tap direct navigation for wedding guests scanning from their smartphones.
-- **Photo Memories Gallery**: Pre-wedding and ceremony photo showcase with lightbox viewer.
-- **Interactive RSVP & Blessings Guestbook**: Guests can submit warm wishes and RSVP, with WhatsApp integration and a live blessings wall.
-- **Celebratory Music Engine**: Synthesized auspicious ambient wedding melody (Web Audio API) that plays across iOS and Android browsers without broken external media links.
-- **Mobile-First Responsive Layout**: Specially optimized for smartphones with a bottom quick-action bar (Location, Events, RSVP, QR).
+Edit `src/config/wedding.ts`, then rebuild.
 
----
+- Couple names and invitation wording are configurable.
+- Wedding date defaults to 23 November 2026 and reception to 25 November 2026. Confirm these and set `datesConfirmed` to true.
+- Fill each event's `time` using Indian 24-hour time, plus its venue, address, city and exact Google Maps URL.
+- Empty times and locations display coming-soon messages. Each event enables its own directions button when its map URL is supplied.
+- The countdown uses Indian Standard Time. With an empty ceremony time it counts to the beginning of the wedding date.
+- Update `siteUrl` to the owned Vultr domain when that domain is ready. The social image contains the current couple names.
 
-## 🛠️ How to Customize
+## Vultr hosting
 
-All text, dates, and locations can be updated anytime:
-1. **Wedding Date & Countdown**: Open `script.js` and edit `WEDDING_CONFIG.targetDate` and `displayDateText`.
-2. **Ceremony Details & Venue Address**: Open `index.html` and edit the text under the `#events` and `#venue` sections.
-3. **Couple Photos**: Place your photos in this folder and update `<img src="...">` in `index.html`.
-4. **Push Updates**: Whenever you commit and push to GitHub, the website updates automatically in 30 seconds. The QR code stays 100% identical!
+The deployment target is a Vultr Cloud Compute CPU server with Docker Engine and Docker Compose installed. The invitation is a static website and can be served without GPU resources.
+
+Provide an existing server IP or SSH alias and a domain you own. Point the domain's DNS A record to that server. Configure an AAAA record only when the server has working IPv6. Allow inbound TCP 80 and 443. Caddy obtains and renews HTTPS certificates for the configured domain.
+
+```sh
+npm run deploy:vultr -- user@server your-domain.com
+```
+
+The deployment script builds the ZIP, copies the static output to `/srv/harika-wedding/site`, and starts the project-scoped Caddy service using `deployment/compose.yaml`. Ports 80 and 443 must be available. Existing hosting on those ports needs an appropriate virtual-host integration before running this command.
+
+Use a short owned domain such as `harika-dharmendra.com` if it is available and you choose to register it. This is a naming suggestion. Domain ownership, availability and a purchase budget are awaiting confirmation.
+
+Server access and a production domain have not yet been supplied, so the Vultr deployment remains pending.
+
+References are [Vultr Cloud Compute provisioning](https://docs.vultr.com/products/compute/instances/cloud-compute/provisioning) and [Caddy HTTPS configuration](https://caddyserver.com/docs/quick-starts/https).
+
+## Existing printed QR
+
+The existing QR opens https://hari-aditya-003.github.io/harika-and-kittu/ . Its images live in `public/qr-code.svg`, `public/qr-code-print.png` and `public/qr-code-maroon.png`.
+
+GitHub Pages serves the current invitation at that address during the Vultr setup. After the Vultr domain is live, set `siteUrl` to that domain and push a rebuilt package. The built HTML automatically redirects visitors arriving through `qrEntryUrl` to `siteUrl`. Test the existing printed QR again. This preserves the guest entry point through the hosting migration.
+
+The GitHub Actions workflow builds, tests, deploys the Pages entry, and uploads a fresh static ZIP. The repository keeps the current ZIP at the requested `artifacts/harika-dharmendra-invitation.zip` path.
+
+## Project layout
+
+```text
+src/           React components, styles and editable configuration
+public/        Runtime artwork, fonts, licenses and QR images
+deployment/    Vultr Caddy and Docker Compose configuration
+scripts/       Packaging and Vultr deployment commands
+tests/         Date, map and opening-sequence regression tests
+artifacts/     Deployable ZIP and checksum manifest
+docs/          Artwork provenance and verification notes
+```
+
+`node_modules/` and `dist/` are local dependency and build directories excluded from Git. Obsolete reference screenshots, duplicate QR images, unused source JPGs and superseded framed cards were removed from the project. They are recoverable from the macOS Trash cleanup folder.
+
+The sound toggle is off by default. Skip controls and reduced-motion support provide immediate access to the invitation. See [artwork notes](docs/ARTWORK.md) and [verification](docs/VERIFICATION.md).

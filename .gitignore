@@ -2,3 +2,10 @@ vendor/
 .DS_Store
 *.pyc
 __pycache__/
+node_modules/
+dist/
+artifacts/*
+!artifacts/harika-dharmendra-invitation.zip
+!artifacts/BUILD-MANIFEST.json
+.env
+.env.*

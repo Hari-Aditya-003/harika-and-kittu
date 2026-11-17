@@ -62,3 +62,21 @@ test("only Google Maps embed URLs can become embedded maps", () => {
   assert.equal(safeMapsUrl("https://maps.app.goo.gl/example", true), null);
   assert.equal(safeMapsUrl("https://example.com/maps/embed", true), null);
 });
+
+test("the invitation counts to the confirmed 23 December wedding in Indian time", async () => {
+  const { weddingConfig } = await import("../src/config/wedding.ts");
+  assert.equal(weddingConfig.wedding.date, "2026-12-23");
+  assert.deepEqual(
+    countdownParts(
+      eventTimestamp(weddingConfig.wedding),
+      Date.parse("2026-11-17T17:45:04+05:30"),
+    ),
+    {
+      days: 35,
+      hours: 6,
+      minutes: 14,
+      seconds: 56,
+      complete: false,
+    },
+  );
+});

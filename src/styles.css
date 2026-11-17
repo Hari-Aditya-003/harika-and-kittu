@@ -390,9 +390,12 @@ img {
   letter-spacing: 1px;
   margin-bottom: 16px;
 }
+.ganesh-emblem {
+  object-fit: contain;
+}
 .wax-seal {
-  width: 116px;
-  height: 116px;
+  width: 140px;
+  height: 140px;
   display: grid;
   place-items: center;
   border: 0;
@@ -425,17 +428,17 @@ img {
 .seal-inner {
   display: grid;
   place-items: center;
-  width: 91px;
-  height: 91px;
+  width: 116px;
+  height: 116px;
   border: 1px solid #d0a975a3;
   border-radius: 50%;
   box-shadow:
     0 0 0 4px #55132077,
     inset 0 0 0 3px #a34d4c66;
 }
-.seal-inner svg {
-  width: 70px;
-  height: 78px;
+.seal-inner .ganesh-emblem {
+  width: 108px;
+  height: 108px;
   filter: drop-shadow(1px 2px 1px #3c111b);
 }
 .seal-content > .flourish {
@@ -517,15 +520,10 @@ img {
 .stage-opening .seal-scene {
   display: none;
 }
-/* Reference-sheet procession and dimensional temple invitation panels. */
+/* Illustrated procession and dimensional temple invitation panels. */
 .procession-scene {
   width: min(760px, 96vw);
   animation: page-arrive 0.55s var(--ease);
-}
-.procession-ganesh {
-  width: 36px;
-  color: var(--gold);
-  margin: 0 auto 12px;
 }
 .procession-scene h2 {
   font-size: clamp(32px, 4vw, 46px);
@@ -544,69 +542,29 @@ img {
   margin: 12px auto 0;
 }
 .wedding-procession {
-  width: min(540px, 100%);
-  margin: 12px auto 18px;
-  mix-blend-mode: multiply;
-  animation: procession-arrive 0.7s var(--ease) both;
+  width: min(720px, 100%);
+  margin: 30px auto 28px;
 }
-.wedding-procession svg {
+.wedding-procession img {
   display: block;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.procession-arrival {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: min(26svh, 210px);
-}
-.wedding-musicians {
-  position: relative;
-  width: 46%;
-  height: 69%;
-  margin-right: 2%;
-  animation: procession-bob 0.5s ease-in-out infinite alternate;
-}
-.wedding-musicians svg,
-.wedding-groom svg {
-  position: absolute;
-  inset: 0;
-}
-.musicians-marching {
-  animation: band-march 4.2s steps(1, end) infinite;
-}
-.musicians-dancing {
-  animation: band-dance 4.2s steps(1, end) infinite;
-}
-.wedding-groom {
-  position: relative;
-  width: 48%;
-  height: 100%;
-  animation: procession-bob 0.7s ease-in-out infinite alternate-reverse;
-}
-.groom-frame {
-  opacity: 0;
-  animation: groom-poses 1.2s steps(1, end) infinite;
-}
-.groom-frame-1 {
-  animation-delay: -0.8s;
-  /* Exclude the adjacent umbrella and palanquin in the source sheet. */
-  clip-path: polygon(0 0, 100% 0, 100% 94%, 85% 94%, 85% 100%, 8% 100%, 8% 79%, 0 79%);
-}
-.groom-frame-2 {
-  animation-delay: -0.4s;
-}
-.procession-bride {
-  height: min(12.5svh, 108px);
-  margin: 20px auto 0;
-  animation: bridal-sway 1.2s ease-in-out infinite alternate;
+  height: auto;
+  animation: ceremonial-drift 3.8s ease-in-out infinite alternate;
+  transform-origin: center bottom;
 }
 .procession-ground {
   height: 1px;
   width: 90%;
-  margin: 5px auto 0;
+  margin: 8px auto 0;
   background: linear-gradient(90deg, transparent, #b68a4660, transparent);
+}
+@keyframes ceremonial-drift {
+  from {
+    transform: translate(-4px, 1px) rotate(-0.15deg);
+  }
+  to {
+    transform: translate(4px, -1px) rotate(0.15deg);
+  }
 }
 .loading-copy {
   font: italic 17px var(--serif);
@@ -772,7 +730,7 @@ img {
 .temple-reference .temple-door {
   border: 0;
   box-shadow: none;
-  background-image: url('/images/opening/temple-gold.webp');
+  background-image: url("/images/opening/temple-gold.webp");
   background-size: 200% 100%;
   background-repeat: no-repeat;
 }
@@ -1160,8 +1118,8 @@ img {
   margin: auto;
 }
 .blessings-ganesh {
-  width: 88px;
-  height: 94px;
+  width: 124px;
+  height: 124px;
   margin: 0 auto 22px;
   color: #ad803e;
 }
@@ -1276,6 +1234,11 @@ img {
   text-transform: uppercase;
   margin-top: 14px;
   color: #dcc293;
+}
+.countdown-target {
+  margin: 0 0 12px;
+  font: 24px var(--serif);
+  color: #f5e7cc;
 }
 .countdown-note {
   font-size: 9px;
@@ -1671,33 +1634,14 @@ img {
     transform: rotate(1deg) translateY(-2px);
   }
 }
-@keyframes groom-poses {
-  0%, 33.333% { opacity: 1; }
-  33.334%, 100% { opacity: 0; }
-}
-@keyframes band-march {
-  0%, 59.999% { opacity: 1; }
-  60%, 100% { opacity: 0; }
-}
-@keyframes band-dance {
-  0%, 59.999% { opacity: 0; }
-  60%, 100% { opacity: 1; }
-}
-@keyframes procession-bob {
-  from { transform: translateY(0); }
-  to { transform: translateY(-3px); }
-}
-@keyframes bridal-sway {
-  from { transform: translateX(-3px) rotate(-0.45deg); }
-  to { transform: translateX(3px) rotate(0.45deg); }
-}
-@keyframes procession-arrive {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
+
 @keyframes loading-breathe {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes temple-zoom {
   0%,
@@ -1872,16 +1816,16 @@ img {
     margin-bottom: 12px;
   }
   .wax-seal {
-    width: 100px;
-    height: 100px;
+    width: 128px;
+    height: 128px;
   }
   .seal-inner {
-    width: 78px;
-    height: 78px;
+    width: 106px;
+    height: 106px;
   }
-  .seal-inner svg {
-    width: 60px;
-    height: 67px;
+  .seal-inner .ganesh-emblem {
+    width: 100px;
+    height: 100px;
   }
   .seal-content > .flourish {
     margin: 19px auto 11px;
@@ -1916,9 +1860,11 @@ img {
   .procession-scene {
     width: 100%;
   }
-  .procession-ganesh {
-    width: 32px;
-    margin-bottom: 10px;
+  .wedding-procession {
+    margin: 26px auto;
+  }
+  .countdown-target {
+    font-size: 22px;
   }
   .procession-scene .eyebrow {
     font-size: 8px;
@@ -2129,8 +2075,8 @@ img {
     padding: 64px 22px 66px;
   }
   .blessings-ganesh {
-    width: 67px;
-    height: 72px;
+    width: 112px;
+    height: 112px;
     margin-bottom: 23px;
   }
   .blessings-section .eyebrow {
@@ -2494,22 +2440,22 @@ img {
     min-height: 300px;
   }
   .seal-content {
-    top: 23%;
+    top: 18%;
   }
   .wax-seal {
-    width: 86px;
-    height: 86px;
+    width: 96px;
+    height: 96px;
   }
   .seal-inner {
-    width: 67px;
-    height: 67px;
+    width: 80px;
+    height: 80px;
   }
-  .seal-inner svg {
-    width: 50px;
-    height: 59px;
+  .seal-inner .ganesh-emblem {
+    width: 76px;
+    height: 76px;
   }
   .seal-content > .flourish {
-    margin: 14px auto 8px;
+    margin: 10px auto 6px;
   }
   .shubh-vivah {
     font-size: 26px;
@@ -2526,10 +2472,6 @@ img {
   }
   .skip-intro {
     bottom: 22px;
-  }
-  .procession-ganesh {
-    width: 26px;
-    margin-bottom: 8px;
   }
   .procession-scene h2 {
     font-size: 29px;

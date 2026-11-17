@@ -48,7 +48,7 @@ export default function App() {
   }, [opened]);
   useEffect(() => {
     document.title = `${config.couple.bride} & ${config.couple.groom} | The Wedding Invitation`;
-    const description = `${config.invitation.introduction} Wedding: ${dateLabel(config.wedding.date)}. Reception: ${dateLabel(config.reception.date)}.${config.datesConfirmed ? "" : " Dates and details to be confirmed."}`;
+    const description = `${config.invitation.introduction} Wedding: ${dateLabel(config.wedding.date)}. Reception: ${dateLabel(config.reception.date)}.${config.reception.dateConfirmed ? "" : " Reception details to be announced."}`;
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute("content", description);
@@ -273,7 +273,7 @@ export default function App() {
                     <small>WITH LOVE & BLESSINGS</small>
                   </span>
                 </div>
-                {!config.datesConfirmed && (
+                {!config.wedding.dateConfirmed && (
                   <p className="date-pending">Date to be confirmed</p>
                 )}
                 <a

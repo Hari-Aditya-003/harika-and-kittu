@@ -3,6 +3,7 @@ import { safeMapsUrl } from "../lib/date.mjs";
 import { Flourish, Icon, Lamp, Lotus } from "./Artwork";
 
 export function dateLabel(date: string, options?: Intl.DateTimeFormatOptions) {
+  if (!date) return "Date to be announced";
   return new Intl.DateTimeFormat("en-IN", {
     day: "numeric",
     month: "long",
@@ -43,10 +44,9 @@ export function Celebrations() {
           reception
         />
       </div>
-      {!config.datesConfirmed && (
+      {!config.reception.dateConfirmed && (
         <p className="provisional-note">
-          Save these dates with us. Final dates and details will be confirmed
-          here.
+          Reception date and venue details will be announced here.
         </p>
       )}
     </section>
@@ -83,7 +83,7 @@ function EventCard({
       <p className="eyebrow">{subtitle}</p>
       <h3>{name}</h3>
       <Flourish />
-      <p className="event-weekday">
+      <p className="event-weekday" hidden={!event.date}>
         {dateLabel(event.date, {
           weekday: "long",
           day: undefined,

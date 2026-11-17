@@ -1,5 +1,6 @@
 export type Celebration = {
   date: string;
+  dateConfirmed: boolean;
   time: string;
   venue: string;
   address: string;
@@ -9,13 +10,13 @@ export type Celebration = {
   note: string;
 };
 
-// Dates are editable prototype defaults. Confirm them before sharing with guests.
+// The wedding date is confirmed. Event times and reception details await confirmation.
 export const weddingConfig = {
   couple: { bride: "Harika", groom: "Dharmendra" },
   timezone: "Asia/Kolkata",
-  datesConfirmed: false,
   wedding: {
-    date: "2026-11-23",
+    date: "2026-12-23",
+    dateConfirmed: true,
     time: "", // Local 24-hour time, e.g. '10:30'. Leave empty until confirmed.
     venue: "",
     address: "",
@@ -25,7 +26,8 @@ export const weddingConfig = {
     note: "With sacred vows and the blessings of our loved ones, we begin our forever.",
   } satisfies Celebration,
   reception: {
-    date: "2026-11-25",
+    date: "",
+    dateConfirmed: false,
     time: "",
     venue: "",
     address: "",

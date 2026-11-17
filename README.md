@@ -4,7 +4,7 @@ A mobile wedding invitation with a Ganesh seal, illustrated procession, gold tem
 
 ## Run
 
-Use Node.js 22 or newer.
+Use Node.js 22.18 or newer.
 
 ```sh
 npm ci
@@ -27,7 +27,7 @@ Upload the contents of `artifacts/harika-dharmendra-invitation.zip` to a static 
 Edit `src/config/wedding.ts`, then rebuild.
 
 - Couple names and invitation wording are configurable.
-- Wedding date defaults to 23 November 2026 and reception to 25 November 2026. Confirm these and set `datesConfirmed` to true.
+- The wedding date is confirmed as 23 December 2026. The reception date awaits confirmation. Set each event’s `date` and `dateConfirmed` when its details are confirmed.
 - Fill each event's `time` using Indian 24-hour time, plus its venue, address, city and exact Google Maps URL.
 - Empty times and locations display coming-soon messages. Each event enables its own directions button when its map URL is supplied.
 - The countdown uses Indian Standard Time. With an empty ceremony time it counts to the beginning of the wedding date.

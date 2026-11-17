@@ -7,7 +7,7 @@ import { processionDelay } from "../lib/opening.mjs";
 type Stage = "sealed" | "releasing" | "procession" | "temple" | "opening";
 const STAGE_TIMING: Partial<Record<Stage, [number, Stage | "done"]>> = {
   releasing: [650, "procession"],
-  procession: [4200, "temple"],
+  procession: [2800, "temple"],
   temple: [1300, "opening"],
   opening: [2800, "done"],
 };
@@ -21,8 +21,8 @@ export function Opening({
 }) {
   const [stage, setStage] = useState<Stage>("sealed");
   const [assets, setAssets] = useState<Record<string, "loaded" | "failed">>({});
-  const artworkReady = Object.keys(assets).length === 4;
-  const spritesReady = assets.musicians === "loaded" && assets.procession === "loaded";
+  const artworkReady = Object.keys(assets).length === 3;
+  const processionReady = assets.procession === "loaded";
   const templeReady = assets.temple === "loaded";
   const stageStart = useRef({ stage, time: performance.now() });
   const sealRef = useRef<HTMLButtonElement>(null);
@@ -46,7 +46,10 @@ export function Opening({
         if (active) setAssets((current) => ({ ...current, [key]: status }));
       };
       image.onload = () => {
-        image.decode().then(() => settle("loaded"), () => settle("failed"));
+        image.decode().then(
+          () => settle("loaded"),
+          () => settle("failed"),
+        );
       };
       image.onerror = () => settle("failed");
       image.src = src;
@@ -54,7 +57,9 @@ export function Opening({
     });
     return () => {
       active = false;
-      images.forEach((image) => { image.onload = image.onerror = null; });
+      images.forEach((image) => {
+        image.onload = image.onerror = null;
+      });
     };
   }, []);
   useEffect(() => {
@@ -67,9 +72,10 @@ export function Opening({
       stageStart.current = { stage, time: performance.now() };
     const [defaultDuration, next] = STAGE_TIMING[stage]!;
     const elapsed = performance.now() - stageStart.current.time;
-    const remaining = stage === "procession"
-      ? processionDelay(artworkReady, elapsed)
-      : Math.max(0, defaultDuration - elapsed);
+    const remaining =
+      stage === "procession"
+        ? processionDelay(artworkReady, elapsed)
+        : Math.max(0, defaultDuration - elapsed);
     const timer = window.setTimeout(
       () => (next === "done" ? onComplete() : setStage(next)),
       remaining,
@@ -147,34 +153,38 @@ export function Opening({
       </div>
       {stage === "procession" && (
         <div className="procession-scene" role="status">
-          <Ganesh className="procession-ganesh" />
-          <p className="eyebrow">WITH LOVE, WE WELCOME YOU</p>
           <h2>
             A celebration
             <br />
             <i>is on its way.</i>
           </h2>
           <Flourish />
-          {spritesReady ? <WeddingProcession /> : <Procession />}
+          {processionReady ? <WeddingProcession /> : <Procession />}
           <p className="loading-copy">
-            {artworkReady ? "A beautiful beginning awaits" : "Bringing our invitation to life…"}
+            {artworkReady
+              ? "A beautiful beginning awaits"
+              : "Bringing our invitation to life…"}
           </p>
           <div
             className={`loading-line ${artworkReady ? "is-ready" : ""}`}
             role="progressbar"
             aria-label="Invitation artwork prepared"
             aria-valuemin={0}
-            aria-valuemax={4}
+            aria-valuemax={3}
             aria-valuenow={Object.keys(assets).length}
           >
-            <span style={{ width: `${Object.keys(assets).length * 25}%` }} />
+            <span
+              style={{ width: `${(Object.keys(assets).length / 3) * 100}%` }}
+            />
           </div>
         </div>
       )}
       {(stage === "temple" || stage === "opening") && (
         <div className="temple-scene" role="status">
           <p className="eyebrow">MAY THIS BEGINNING BE BLESSED</p>
-          <div className={`temple-composition ${templeReady ? "temple-reference" : "temple-fallback"}`}>
+          <div
+            className={`temple-composition ${templeReady ? "temple-reference" : "temple-fallback"}`}
+          >
             <div className="temple-light" />
             {!templeReady && <TempleArt />}
             <div className={templeReady ? "temple-reveal" : "temple-doorway"}>

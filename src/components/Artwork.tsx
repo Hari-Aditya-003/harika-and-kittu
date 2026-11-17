@@ -2,33 +2,14 @@ import { useId } from "react";
 
 export function Ganesh({ className = "" }: { className?: string }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 140 150"
-      fill="none"
+    <img
+      className={`ganesh-emblem ${className}`}
+      src={`${import.meta.env.BASE_URL}images/opening/ganesh-emblem.webp`}
+      width="480"
+      height="480"
+      alt=""
       aria-hidden="true"
-    >
-      <g
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M55 40 61 23h18l7 17M59 30h22M66 22l4-9 4 9M50 47c-6-14-30-12-31 5-1 20 14 32 28 29M90 47c6-14 30-12 31 5 1 20-14 32-28 29" />
-        <path d="M48 62c-9-14-20-11-20-2 0 10 8 16 15 16M92 62c9-14 20-11 20-2 0 10-8 16-15 16M52 44c8-9 28-9 36 0 10 12 4 29-3 34-7 7-9 11-8 19 1 10 17 12 20 2 2-7-3-11-7-8" />
-        <path d="M51 45c-8 13-4 28 2 34 10 9 9 18 6 25M63 72c2 4 10 4 13 0M58 57l5 2m14 0 5-2M70 45v9M66 48h8M51 83c-13-2-20 6-19 19M89 82c15-1 21 10 17 22M40 86l-5-8m64 9 7-10M40 98c-14 7-19 20-8 24 9 4 20-1 26-8M99 98c13 8 18 19 8 24-9 4-20-1-27-8" />
-        <path d="M52 88c-8 22 0 35 18 35s28-12 19-34M58 97c4 5 18 5 23 0M47 126l23 10 24-10M37 134h66M58 118l-5 9m29-9 5 9M28 100l-4-8-4 7 5 5m85-4 7-8 3 8-6 4" />
-        <path
-          d="M43 138q27 14 54 0M16 116l-6 5 7 4m108-8 6 4-6 5"
-          strokeWidth="1"
-        />
-      </g>
-      <g fill="currentColor">
-        <circle cx="58" cy="63" r="1.6" />
-        <circle cx="82" cy="63" r="1.6" />
-        <circle cx="70" cy="38" r="2" />
-      </g>
-    </svg>
+    />
   );
 }
 

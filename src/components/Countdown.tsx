@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { weddingConfig as config } from "../config/wedding";
 import { countdownParts, eventTimestamp } from "../lib/date.mjs";
+import { dateLabel } from "./Celebrations";
 import { Flourish } from "./Artwork";
 
 export function Countdown() {
@@ -55,6 +56,7 @@ export function Countdown() {
             ))}
           </div>
         )}
+        <p className="countdown-target">{dateLabel(config.wedding.date)}</p>
         <p className="countdown-note">
           {!config.wedding.time
             ? "Counting to the wedding date · Indian Standard Time"

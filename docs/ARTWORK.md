@@ -8,7 +8,7 @@ The production prompt was:
 
 `public/images/social-preview.jpg` is a locally composed share card using that illustration. Its displayed names should also be updated if the couple changes.
 
-The Ganesh line art, botanical borders, lotus, lamps, procession characters, elephants, palanquin, animated flames and temple architecture are original SVG components in `src/components/Artwork.tsx`. They remain editable as code. The animated scenes use CSS transforms rather than video or large animation dependencies.
+The botanical borders, lotus, lamps, fallback procession, animated flames and fallback temple architecture are original SVG components in `src/components/Artwork.tsx`. The animated scenes use CSS transforms rather than video or large animation dependencies.
 
 The quiet bell sequence is original Web Audio synthesis, off by default and started only by the sound button. No third-party recording is used.
 
@@ -18,8 +18,20 @@ Reference URL, retained exactly:
 
 https://www.dreamsinvite.com/akshar-weds-priya?utm_source=Pinterest&utm_medium=organic
 
-The URL returned no usable page content during reference research. The four required screenshots, the full-page screenshot, and the remaining supplied visual references were inspected locally. Those screenshots are reference material, excluded from the deployment bundle.
+The reference website was inspected in Chrome on 17 November 2026. The four required screenshots, the full-page screenshot, and the remaining supplied visual references were inspected locally. Those screenshots are reference material, excluded from the deployment bundle.
 
 ## Current temple and procession
 
-The temple image now uses the owner-supplied 17 November 2026 screenshot, optimized as `public/images/opening/temple-gold.webp`. The illustrated procession sheets remain in the opening asset directory as WebP. Duplicate source JPG files were removed after verifying the components reference the WebP versions.
+The temple image now uses the owner-supplied 17 November 2026 screenshot, optimized as `public/images/opening/temple-gold.webp`. The opening uses a continuous original procession illustration with a subtle CSS sway. The superseded sprite sheets have been removed.
+
+
+## Ganesh emblem and continuous procession
+
+Both images were generated with the built-in image-generation tool on 17 November 2026 and optimized to transparent WebP for mobile delivery.
+
+- `public/images/opening/ganesh-emblem.webp` is an original seated Ganesh, antique-gold oval scrollwork and maroon lotus emblem inspired by the supplied style reference.
+- `public/images/opening/wedding-procession.webp` is one continuous miniature-style scene with elephants, musicians and a bridal palanquin. It replaces frame-based loading artwork.
+
+The Ganesh prompt requested a dignified seated Lord Ganesha with four traditionally posed arms, blessing hand, ornate crown, jewellery and lotus seat, antique sculpted gold with maroon enamel, a symmetrical oval scrollwork frame and small lotus flowers, a strong silhouette readable at phone size, and a transparent background without lettering or watermarks.
+
+The procession prompt requested a panoramic traditional Indian miniature watercolor illustration, ceremonial elephants at each end, dhol and brass musicians, bearers carrying a red bridal palanquin, mature proportioned figures sharing one ground line, cream, sage, maroon and antique gold costumes, a coherent continuous scene, and a transparent background without labels or watermarks.
